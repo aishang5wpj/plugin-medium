@@ -20,8 +20,12 @@ class MyComponent: ApplicationComponent, PersistentStateComponent<MyComponent> {
     private var localVersion: String = "0.0"
     private lateinit var version: String
 
+    override fun getComponentName(): String {
+        return "MyComponent"
+    }
+
     override fun initComponent() {
-        super.initComponent()
+//        super.initComponent()
 
         version = PluginManager.getPlugin(PluginId.getId("myplugin.myplugin"))!!.version
 
@@ -35,6 +39,9 @@ class MyComponent: ApplicationComponent, PersistentStateComponent<MyComponent> {
                     null
             )
         }
+    }
+
+    override fun disposeComponent() {
     }
 
     override fun getState(): MyComponent? = this
